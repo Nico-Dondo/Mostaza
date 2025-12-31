@@ -1,71 +1,83 @@
 export class trabajaConNosotros {
     constructor() {
-        this.name = '//*[@id="name"]',
-        this.apellido = '//*[@id="surname"]',
-        this.cuit = '//*[@id="cuit"]',
-        this.birthday = '//*[@id="birthday"]',
-        this.email = '//*[@id="email"]',
-        this.telefono = '//*[@id="phone"]',
-        this.studies = '//*[@id="study"]',
-        this.educacion = '//*[@id="study"] > option:nth-child(7)',
-        this.puesto = '//*[@id="preference"]',
-        this.area = '//*[@id="preference"] > option:nth-child(2)',
-        this.calle = '//*[@id="street"]',
-        this.numero = '//*[@id="number"]',
-        this.location = '//*[@id="location"]',
-        this.provincia = '//*[@id="state"]'
+        this.name = '#name',
+        this.apellido = '#surname',
+        this.cuit = '#cuit',
+        this.birthday = '#birthday',
+        this.email = '#email',
+        this.telefono = '#phone',
+        this.studies = '#study',
+        this.educacion = '#study > option:nth-child(9)',
+        this.carrera = '#career'
+        this.puesto = '#preference',
+        this.area = '#preference > option:nth-child(2)',
+        this.calle = '#street',
+        this.numero = '#number',
+        this.location = '#location',
+        this.provincia = '#state',
+        this.horario = '#time-availability'
+        this.volver = 'body > div > div > div > div > header > a.back-button'
     };
 
     
     nombre() {
-        cy.xpath(this.name).scrollIntoView().click().type('Nicolas');
+        cy.get(this.name).click().type('Nicolas');
     }
 
     lastName() {
-        cy.xpath(this.apellido).scrollIntoView().click().type('Dondo');
+        cy.get(this.apellido).scrollIntoView().click().type('Dondo');
     }
 
     arca() {
-        cy.xpath(this.cuit).scrollIntoView().click().type('20312345678');
+        cy.get(this.cuit).scrollIntoView().click().type('20312345678');
     }
 
     fechaDeNacimiento() {
-        cy.xpath(this.birthday).scrollIntoView().click().type('04/04/1980');
+        cy.get(this.birthday).scrollIntoView().click().type('04/04/1980');
     }
 
     correo() {
-        cy.xpath(this.email).scrollIntoView().click().type('nicolas.dondo@example.com');
+        cy.get(this.email).scrollIntoView().click().type('nicolas.dondo@example.com');
     }
 
     phone() {
-        cy.xpath(this.telefono).scrollIntoView().click().type('1123456789');
+        cy.get(this.telefono).scrollIntoView().click().type('1123456789');
     }
 
     estudios() {
-        cy.xpath(this.studies).scrollIntoView().click();
-        cy.xpath(this.educacion).click();
+        cy.get(this.studies).select('Universitario en curso');
+    }
+
+    carreraUniversitaria() {
+        cy.get(this.carrera).scrollIntoView().click().type('Ingeniería en Sistemas');
     }
 
     puestoDePreferencia() {
-        cy.xpath(this.puesto).scrollIntoView().click();
-        cy.xpath(this.area).click();
+        cy.get(this.puesto).select('Restaurantes')
     }
 
     street() {
-        cy.xpath(this.calle).scrollIntoView().type('Calle Falsa');
+        cy.get(this.calle).scrollIntoView().type('Calle Falsa');
     }
 
     number() {
-        cy.xpath(this.numero).scrollIntoView().type('1234');
+        cy.get(this.numero).scrollIntoView().type('1234');
     }
 
     localidad() {
-        cy.xpath(this.location).scrollIntoView().type('Ciudad');
+        cy.get(this.location).scrollIntoView().type('Ciudad de Buenos Aires');
     }
 
     provincie() {
-        cy.xpath(this.provincia).scrollIntoView().select('Ciudad Autónoma de Buenos Aires');
+        cy.get(this.provincia).scrollIntoView().type('Ciudad Autónoma de Buenos Aires');
     }
 
-    
+    horas() {
+        cy.get(this.horario).scrollIntoView().select('Tarde');
+    }
+
+    back(){
+        cy.scrollTo('top')
+        cy.get(this.volver).click()
+    }
 }

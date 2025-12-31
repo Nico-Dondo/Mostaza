@@ -1,4 +1,3 @@
-
 import { hamburger } from '../support/Pages/hamburger.cy.js'
 import { menu } from '../support/Pages/menu.cy.js'
 import { categorias } from '../support/Pages/categorias.cy.js'
@@ -6,15 +5,13 @@ import { trabajaConNosotros } from '../support/Pages/trabajaConNosotros.cy.js'
 import 'cypress-xpath';
 
 
-describe('Prueba de Mostaza', () => {
+describe('Pruebas de Menú Mostaza', () => {
   const hamburgerPage = new hamburger();
   const menuPage = new menu();
   const categoriasPage = new categorias();
-  const trabajaConNosotrosPage = new trabajaConNosotros();
 
   beforeEach(() => {
-    cy.visit('/');
-
+    cy.visit('/');  
   });
 
   it('Prueba de recorrido', () => {
@@ -30,12 +27,15 @@ describe('Prueba de Mostaza', () => {
     categoriasPage.CategoriaPollo();
     categoriasPage.CategoriaParaVos();
   });
-
-  it('Prueba formulario de trabaja con nosotros', () => {
-    hamburgerPage.hamburgerClick();
-    hamburgerPage.workWithUsClick();
+});
 
 
+describe('Prueba Formulario VideoCV', () => {
+  it('completa formulario de trabaja con nosotros', () => {
+    const trabajaConNosotrosPage = new trabajaConNosotros();
+    
+    cy.visit(Cypress.config('trabajaUrl'));
+    
     trabajaConNosotrosPage.nombre();
     trabajaConNosotrosPage.lastName();
     trabajaConNosotrosPage.arca();
@@ -43,13 +43,14 @@ describe('Prueba de Mostaza', () => {
     trabajaConNosotrosPage.correo();
     trabajaConNosotrosPage.phone();
     trabajaConNosotrosPage.estudios();
+    trabajaConNosotrosPage.carreraUniversitaria();
     cy.scrollTo('bottom');
     trabajaConNosotrosPage.puestoDePreferencia();
     trabajaConNosotrosPage.street();
     trabajaConNosotrosPage.number();
     trabajaConNosotrosPage.localidad();
     trabajaConNosotrosPage.provincie();
+    trabajaConNosotrosPage.horas();
+    trabajaConNosotrosPage.back()
   });
-})
-
-
+});
